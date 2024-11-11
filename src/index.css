@@ -1,0 +1,4 @@
+html, body {
+    height: 100%; /* Ensure the full height of the page is considered */
+    margin: 0; /* Remove default margin */
+  }
