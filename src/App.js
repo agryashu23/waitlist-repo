@@ -57,15 +57,19 @@ function App() {
   const handleSubmit = async (event) => {
     setMessage("");
     event.preventDefault();
-    const response = await axios.post(
-      `https://api.chips.social/api/join-waitlist`,
-      {
-        email: email.trim(),
-      }
-    );
-    setEmail("");
-    const data = await response.data.message;
-    setMessage(data);
+    if (email === "") {
+      alert("Email can't be empty");
+    } else {
+      const response = await axios.post(
+        `https://api.chips.social/api/join-waitlist`,
+        {
+          email: email.trim(),
+        }
+      );
+      setEmail("");
+      const data = await response.data.message;
+      setMessage(data);
+    }
   };
   return (
     <div className="container">
@@ -85,8 +89,8 @@ function App() {
           <span style={{ fontStyle: "italic" }}>or just hangout.</span>
         </p>
         <h4>
-          Join waitlist to get early access to create your channel,
-          <br /> And Not another whatsapp group!
+          Join waitlist to get early access to create your channel, And Not
+          another whatsapp group!
         </h4>
       </header>
       <div className="flex-container">

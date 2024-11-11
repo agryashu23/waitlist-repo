@@ -22,7 +22,10 @@ body {
   background-color: #5A00ff;
   min-height: 100vh;
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
+
 
 .header {
   max-width: 50%;
@@ -47,7 +50,10 @@ body {
 }
 .header h4 {
   font-size: 0.7em;
+  max-width: 80%;
   margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
   line-height: 14px;
   letter-spacing: 1px;
   color: white;
@@ -103,11 +109,9 @@ body {
 
 /* For larger screens */
 
-
-
 .content {
   display: flex;
-  justify-content: center;
+  width: 100%;
   overflow-x: auto;
   gap: 20px;
   margin-top: 25px;
@@ -135,6 +139,7 @@ body {
 .card-text {
   font-family: 'Inter', sans-serif; 
   margin-bottom: 8px;
+  text-align: left;
   font-weight: bold;
   color: black;
   font-size: 18px; 
@@ -159,6 +164,7 @@ body {
   height: 140px; 
   text-align: center;
   margin-top: 30px; 
+  margin-bottom: 0;
   display: flex;
 }
 
@@ -223,4 +229,66 @@ body {
   .input-field::placeholder {
     font-size: 0.875rem; /* 14px for text-sm */
   }
+}
+@media (max-width: 1024px) {
+  .header {
+    max-width: 75%;
+  }
+  .flex-container {
+    width: 50%;
+   
+  }
+}
+@media (max-width: 640px) {
+  .header {
+    max-width: 90%;
+  }
+  .flex-container {
+    width: 75%;
+  }
+  .content {
+    gap: 15px;
+  }
+  .card {
+    width: 290px; 
+  }
+  .card img {
+    width: auto;
+    max-height: 274px; 
+    object-fit: contain;
+  }
+}
+@media (max-width: 500px) {
+  .header {
+    max-width: 95%;
+  }
+  .header h1 {
+    font-size: 2rem; 
+  }
+  
+  .flex-container {
+    width: 75%;
+  }
+  .header p {
+    font-size: 1em;
+  }
+  .header h4 {
+    font-size: 0.6em;
+  }
+  .content {
+    gap: 15px;
+  }
+  .card {
+    width: 280px; 
+  }
+  .card img {
+    width: auto;
+    max-height: 264px; 
+    object-fit: contain;
+  }
+  .header h4 {
+    max-width: 100%;
+   
+  }
+  
 }
