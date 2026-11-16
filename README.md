@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# Channels.social: Waitlist and Rebrand Landing Page
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The public landing page for **Channels.social** (formerly **Chips.social**), a
+community platform for topic-based group chats, curated profiles, events and
+content sharing.
 
-## Available Scripts
+The page went through two phases, and both are in the history:
 
-In the project directory, you can run:
+1. **Pre-launch waitlist** (Nov 2024): a marketing page with an email capture
+   form posting to the product API, plus feature cards describing the product.
+2. **Rebrand announcement** (Apr 2025, current): tells existing Chips.social
+   users that the product is now Channels.social, that their data has been
+   migrated, and points them to the new app or a booking link to talk to the
+   team.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Waitlist sign-up:** email input with client-side validation, posted with
+  Axios to `POST /api/join-waitlist`. The server's response message is shown
+  inline, and the field resets on success.
+- **Feature showcase:** four alternating, color-coded cards ("More than just a
+  link-in-bio", "Create your digital space", "Manage and share content",
+  "Discover and connect") with product imagery served from S3.
+- **Rebrand screen:** a split layout with the brand panel and calls to action on
+  the left and an illustration on the right; primary CTA to channels.social and
+  a secondary CTA that opens a Calendly booking.
+- **SEO and social previews:** per-page `<title>` and favicon via
+  `react-helmet`, plus Open Graph meta tags in `public/index.html` for link
+  previews.
+- **Responsive layout:** hand-written CSS (no UI framework) with Rubik and Inter
+  web fonts; the layout stacks on mobile.
+- **Shared footer** with social links.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech stack
 
-### `npm test`
+| | |
+|---|---|
+| Framework | React 18 (Create React App) |
+| HTTP | Axios |
+| Head management | react-helmet |
+| Styling | Plain CSS, Google Fonts (Rubik, Inter) |
+| Assets | SVG logos and illustrations; card images on AWS S3 |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project structure
 
-### `npm run build`
+```
+public/
+  index.html        meta tags, Open Graph card, fonts
+src/
+  App.js            landing / rebrand screen (the waitlist form is in git history)
+  Footer.js         social links footer
+  App.css           layout and responsive styles
+  assets/           logos, arrow icon, hero illustration
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Running locally
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm install
+npm start          # http://localhost:3000
+npm run build      # production build in build/
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To see the original waitlist version with the email form:
 
-### `npm run eject`
+```bash
+git log --oneline          # find the commit before "Chips"
+git checkout <commit> -- src/App.js
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Context
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Built for Chips2Connect, the startup behind Chips.social and Channels.social, to
+collect early-access sign-ups before launch and later to carry users through the
+rename without losing them.
